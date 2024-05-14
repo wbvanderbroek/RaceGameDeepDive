@@ -11,7 +11,8 @@ public class CameraSwitcher : MonoBehaviour
     
     void Start()
     {
-    
+        firstPerson.SetActive(false);
+        thirdPerson.SetActive(true);
     }
 
     void Update()
@@ -19,14 +20,14 @@ public class CameraSwitcher : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && firstPerson.activeSelf == true)
         {
             firstPerson.SetActive(false);
-            thirdPerson.SetActive(true);
-            Debug.Log("To third-person");
+            hoodView.SetActive(true);
+            Debug.Log("To hood-view");
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && thirdPerson.activeSelf == true)
         {
             thirdPerson.SetActive(false);
-            hoodView.SetActive(true);
-            Debug.Log("To hood-view");
+            firstPerson.SetActive(true);
+            Debug.Log("To first-person");
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && hoodView.activeSelf == true)
         {
@@ -37,8 +38,8 @@ public class CameraSwitcher : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Tab) && backView.activeSelf == true)
         {
             backView.SetActive(false);
-            firstPerson.SetActive(true);
-            Debug.Log("To first-person");
+            thirdPerson.SetActive(true);
+            Debug.Log("To third-person");
         }
     }
 }

@@ -1,51 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CheckpointsandLaps : MonoBehaviour
 {
-    [Header("Checkpoints")]
-    public GameObject start;
-    public GameObject end;
-    public GameObject[] checkpoints;
 
     [Header("Settings")]
-    public float Laps = 1;
+    public float laps = 1;
 
     [Header("Information")]
-    private float currentCheckpoint;
-    private float currentLap;
+    private int currentLap;
     private bool started;
     private bool finished;
 
+    [Header("Level Variables")]
+    public GameObject[] checkpoints;
+    public GameObject currentCheckpoint;
+    public int checkpointCounter = 0;
+
     private void Start()
     {
-        currentCheckpoint = 0;
+        currentCheckpoint = checkpoints[0];
         currentLap = 1;
 
         started = false;
         finished = false;
+        foreach (var checkpoint in checkpoints)
+        {
+            checkpoint.SetActive(false);
+        }
+        checkpoints[0].SetActive(true);
+
+        checkpoints[checkpointCounter].GetComponent<MeshRenderer>().enabled = true;
     }
+
+    //private void Update()
+    //{
+    //    foreach (var cp in checkpoints)
+    //    {
+    //        cp.SetActive(false);
+    //    }
+    //    checkpoints[checkpointCounter].SetActive(true);
+    //}
+
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.CompareTag("Checkpoint"))
+        {
+            NextCheckpoint();
+        }
         if (other.CompareTag("Checkpoint"))
         {
             GameObject thisCheckpoint = other.gameObject;
 
             // Started race
-            if (thisCheckpoint == start && !started)
+            if (thisCheckpoint == checkpoints[0] && !started)
             {
                 print("Started");
                 started = true;
             }
             // Ended Lap / Race
-            else if (thisCheckpoint == end && started)
+            else if (thisCheckpoint == checkpoints[checkpoints.Length-1] && started)
             {
                 // if all laps are finished, end race
-                if (currentLap == Laps)
+                if (currentLap == laps)
                 {
-                    if (currentCheckpoint == checkpoints.Length)
+                    if (currentCheckpoint == checkpoints[checkpoints.Length-1])
                     {
                         finished = true;
                         print("Finished");
@@ -56,12 +75,12 @@ public class CheckpointsandLaps : MonoBehaviour
                     }
                 }
                 //if all laps are not finished, start new lap.
-                else if (currentLap < Laps)
+                else if (currentLap < laps)
                 {
-                    if (currentCheckpoint == checkpoints.Length)
+                    if (currentCheckpoint == checkpoints[checkpoints.Length])
                     {
                         currentLap++;
-                        currentCheckpoint = 0;
+                        currentCheckpoint = checkpoints[0];
                         print($"Started lap {currentLap}");
                     }
                 }
@@ -78,17 +97,33 @@ public class CheckpointsandLaps : MonoBehaviour
                     return;
 
                 // if the checkpoint is correct
-                if (thisCheckpoint == checkpoints[i] && i == currentCheckpoint)
+                if (thisCheckpoint == checkpoints[i] && checkpoints[i] == currentCheckpoint)
                 {
                     print("YYEEEEEEEEEEEEEEEEESSSS");
-                    currentCheckpoint++;
+                    NextCheckpoint();
                 }
                 // if the checkpoint is incorrect
-                else if (thisCheckpoint == checkpoints[i] && i != currentCheckpoint)
+                else if (thisCheckpoint == checkpoints[i] && checkpoints[i] != currentCheckpoint)
                 {
                     print("NOOOOOOOOOOOOOOOOOOOOOO WROOOOOOOOONG");
                 }
             }
         }
+
+    }
+    public GameObject NextCheckpoint()
+    {
+        checkpoints[checkpointCounter].SetActive(false);
+            checkpointCounter++;
+
+
+        if (checkpointCounter == checkpoints.Length)
+        {
+            checkpointCounter = 0;
+        }
+
+        checkpoints[checkpointCounter].SetActive(true);
+        currentCheckpoint = checkpoints[checkpointCounter];
+        return currentCheckpoint;
     }
 }

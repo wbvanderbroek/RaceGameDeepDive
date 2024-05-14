@@ -26,7 +26,7 @@ public class CarController : MonoBehaviour
     {
         foreach (var wheel in wheels)
         {
-            
+
             wheel.Torque = throttle * motorTorque;
         }
     }

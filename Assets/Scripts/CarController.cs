@@ -34,7 +34,7 @@ public class CarController : MonoBehaviour
     {
         print((wheels[0].gameObject.GetComponent<WheelCollider>().rpm));
         //print((int)((wheels[0].gameObject.GetComponent<WheelCollider>().rpm + wheels[0].gameObject.GetComponent<WheelCollider>().rpm) / 2) * gearRatios[currentGear - 1] * 60f / (2f * Mathf.PI));
-        rpm = (int)((wheels[0].gameObject.GetComponent<WheelCollider>().rpm + wheels[1].gameObject.GetComponent<WheelCollider>().rpm) /2) * gearRatios[currentGear -1]* 60f / (2f * Mathf.PI);
+        //rpm = (int)((wheels[0].gameObject.GetComponent<WheelCollider>().rpm + wheels[1].gameObject.GetComponent<WheelCollider>().rpm) /2) * gearRatios[currentGear -1]* 60f / (2f * Mathf.PI);
     }
     public void ChangeRpm(float rpmToadd)
     {

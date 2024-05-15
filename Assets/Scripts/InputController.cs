@@ -19,16 +19,25 @@ public class InputController : MonoBehaviour
     {
         Forwards = Input.GetAxis("Vertical");
         Steering = Input.GetAxis("Horizontal");
+        carController.ChangeRpm(Forwards);
 
         carController.ChangeSpeed(Forwards);
         carController.Turn(Steering);        
         if(Input.GetKey(KeyCode.Space))
         {
-            carController.activatebrake(braking);
+            carController.ActivateBrake(braking);
         }
         else
         {
-            carController.disablebrake(braking);
+            carController.DisableBrake(braking);
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            //gear up
+        }
+        else if (Input.GetKey(KeyCode.LeftControl))
+        {
+            //gear down *if possible
         }
     }
 }

@@ -13,39 +13,33 @@ public class CarController : MonoBehaviour
     [SerializeField] private Light BackLight1;
     [SerializeField] private Light BackLight2;
 
-    public float rpm = 0;
-    public int idleRpm = 800;
-    public int maxRpm = 7000;
     [SerializeField] private float accelerationRate = 500f;
     [SerializeField] private float decelerationRate = 1000f;
 
-    [SerializeField] private int currentGear = 1;
-    public float[] gearRatios;
-    [SerializeField] private int gears = 1;
-    [SerializeField] private int maxGears = 5;
+    private float currentSpeed = 0;
+
     void Awake()
     {
         wheels = GetComponentsInChildren<Wheel>();
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
-        rpm = idleRpm;
     }
     private void Update()
     {
-        print((wheels[0].gameObject.GetComponent<WheelCollider>().rpm));
-        //print((int)((wheels[0].gameObject.GetComponent<WheelCollider>().rpm + wheels[0].gameObject.GetComponent<WheelCollider>().rpm) / 2) * gearRatios[currentGear - 1] * 60f / (2f * Mathf.PI));
-        //rpm = (int)((wheels[0].gameObject.GetComponent<WheelCollider>().rpm + wheels[1].gameObject.GetComponent<WheelCollider>().rpm) /2) * gearRatios[currentGear -1]* 60f / (2f * Mathf.PI);
+        CalculateSpeed();
     }
-    public void ChangeRpm(float rpmToadd)
-    {
-        Mathf.Clamp(rpm, 0, maxRpm);
-    }
-    public void ChangeSpeed(float throttle)
+    public void ChangeSpeed(float throttle, float input)
     {
         foreach (var wheel in wheels)
         {
-            wheel.Torque = throttle * motorTorque;
+            wheel.Torque = input * throttle;
         }
+    }
+    IEnumerator CalculateSpeed()
+    {
+        Vector3 lastPosition = transform.position;
+        yield return new WaitForFixedUpdate();
+        currentSpeed = (lastPosition - transform.position).magnitude / Time.deltaTime * 4f;
     }
     public void Turn(float steer)
     {

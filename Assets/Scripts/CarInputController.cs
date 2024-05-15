@@ -80,7 +80,7 @@ public class CarInputController : MonoBehaviour
         carController.ChangeSpeed(currentTorque, Forwards);
         carController.Turn(Steering);
 
-        if (brakeInput > 0f || Input.GetKeyDown(KeyCode.Space))
+        if (brakeInput > 0f || Input.GetKey(KeyCode.Space))
         {
             carController.ActivateBrake(braking);
         }

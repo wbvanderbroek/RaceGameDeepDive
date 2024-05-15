@@ -11,8 +11,7 @@ public class CameraSwitcher : MonoBehaviour
     
     void Start()
     {
-        firstPerson.SetActive(false);
-        thirdPerson.SetActive(true);
+
     }
 
     void Update()
@@ -36,14 +35,14 @@ public class CameraSwitcher : MonoBehaviour
             Debug.Log("To back-view");
         }
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             backView.SetActive(true);
             firstPerson.SetActive(false);
             thirdPerson.SetActive(false);
             hoodView.SetActive(false);
         }
-        else if (Input.GetKeyUp(KeyCode.Tab))
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             backView.SetActive(false);
             thirdPerson.SetActive(true);

@@ -23,9 +23,8 @@ public class InputController : MonoBehaviour
     {
         Forwards = input.actions["Vertical"].ReadValue<float>();
         Steering = Input.GetAxis("Horizontal");
-        carController.ChangeRpm(Forwards);
 
-        carController.ChangeSpeed(Forwards);
+        //carController.ChangeSpeed(Forwards);
         carController.Turn(Steering);        
         if(Input.GetKey(KeyCode.Space))
         {

@@ -5,6 +5,7 @@ public class Test : MonoBehaviour
     [Header("Settings")]
     public float laps = 1;
     public float maxDistance = 10f; // Max distance allowed from the most recent checkpoint
+    public Rigidbody rb;
 
     [Header("Information")]
     private int currentLap;
@@ -20,6 +21,7 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         currentCheckpoint = checkpoints[0];
         currentLap = 1;
         started = false;
@@ -55,6 +57,7 @@ public class Test : MonoBehaviour
             GameObject nextCheckpoint = currentCheckpoint;
             float distance = Vector3.Distance(previousCheckpoint.transform.position, nextCheckpoint.transform.position);
             Debug.Log($"Distance to next checkpoint: {distance}");
+            rb.velocity = Vector3.zero;
         }
 
         if (other.CompareTag("Checkpoint"))
@@ -126,5 +129,7 @@ public class Test : MonoBehaviour
         checkpoints[checkpointCounter].SetActive(true);
         currentCheckpoint = checkpoints[checkpointCounter];
         return currentCheckpoint;
+        
+
     }
 }

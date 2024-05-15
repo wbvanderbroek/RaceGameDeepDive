@@ -1723,8 +1723,8 @@ GameObject:
   - component: {fileID: 5749145755758644897}
   - component: {fileID: 8218808040776019254}
   - component: {fileID: 3807423084597897826}
-  - component: {fileID: 8755872598764319783}
   - component: {fileID: 7693150998588858450}
+  - component: {fileID: 1279553376758492176}
   m_Layer: 0
   m_Name: PlayerCarPolo
   m_TagString: Untagged
@@ -1803,21 +1803,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &8755872598764319783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7235706034910985154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca8ea467ad8f7b0429b8c932dbf8eaba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Forwards: 0
-  Steering: 0
-  braking: 0
 --- !u!114 &7693150998588858450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1838,15 +1823,82 @@ MonoBehaviour:
   wheels: []
   BackLight1: {fileID: 8877055828359875990}
   BackLight2: {fileID: 4401629944905806567}
-  rpm: 0
-  idleRpm: 800
-  maxRpm: 7000
   accelerationRate: 500
   decelerationRate: 1000
-  currentGear: 1
-  gearRatios: []
-  gears: 1
-  maxGears: 5
+--- !u!114 &1279553376758492176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235706034910985154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5644c5daec05e374396f11975ff1958f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xAxis: 0
+  gasInput: 0
+  brakeInput: 0
+  clutchInput: 0
+  currentGear: 0
+  Forwards: 0
+  Steering: 0
+  braking: 100
+  handBrake: 10000
+  RPM: 0
+  redLine: 9000
+  idleRPM: 800
+  rpmText: {fileID: 0}
+  gearText: {fileID: 0}
+  rpmSlider: {fileID: 0}
+  gearRatios:
+  - 3.75
+  - 2.381
+  - 1.7
+  - 1.344
+  - 1.114
+  - 0.957
+  differentialRatio: 7.95
+  clutch: 0
+  isEngineRunning: 1
+  hpToRPMCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.75
+      value: 0.9968149
+      inSlope: 0.24013138
+      outSlope: 0.24013138
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9866638
+      value: -0.038642883
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 1
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  gearState: 0
+  increaseGearRPM: 5500
+  decreaseGearRPM: 3300
+  changeGearTime: 0.1
 --- !u!1 &7746321935537506585
 GameObject:
   m_ObjectHideFlags: 0

@@ -705,6 +705,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1279553376758492176, guid: 9f4a0507f9258ea43bfb0e75399b1719,
+        type: 3}
+      propertyPath: rpmText
+      value: 
+      objectReference: {fileID: 2114245505}
+    - target: {fileID: 1279553376758492176, guid: 9f4a0507f9258ea43bfb0e75399b1719,
+        type: 3}
+      propertyPath: gearText
+      value: 
+      objectReference: {fileID: 173750530}
+    - target: {fileID: 1279553376758492176, guid: 9f4a0507f9258ea43bfb0e75399b1719,
+        type: 3}
+      propertyPath: rpmSlider
+      value: 
+      objectReference: {fileID: 1549491315}
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -760,101 +775,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCarPolo
       objectReference: {fileID: 0}
-    - target: {fileID: 8755872598764319783, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8755872598764319783, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7235706034910985154, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1495107665}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
---- !u!1 &1495107664 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7235706034910985154, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-    type: 3}
-  m_PrefabInstance: {fileID: 1495107663}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1495107665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495107664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5644c5daec05e374396f11975ff1958f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xAxis: 0
-  gasInput: 0
-  brakeInput: 0
-  clutchInput: 0
-  currentGear: 0
-  Forwards: 0
-  Steering: 0
-  braking: 100
-  handBrake: 10000
-  RPM: 0
-  redLine: 9000
-  idleRPM: 800
-  rpmText: {fileID: 2114245505}
-  gearText: {fileID: 173750530}
-  rpmSlider: {fileID: 1549491315}
-  gearRatios:
-  - 3.75
-  - 2.381
-  - 1.7
-  - 1.344
-  - 1.114
-  - 0.957
-  differentialRatio: 7.95
-  clutch: 0
-  isEngineRunning: 1
-  hpToRPMCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 0.75
-      value: 0.9968149
-      inSlope: 0.24013138
-      outSlope: 0.24013138
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.9866638
-      value: -0.038642883
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 1
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  gearState: 0
-  increaseGearRPM: 5500
-  decreaseGearRPM: 3300
-  changeGearTime: 0.1
 --- !u!1 &1549491313
 GameObject:
   m_ObjectHideFlags: 0

@@ -149,6 +149,7 @@ public class CarInputController : MonoBehaviour
                     gearState = GearState.Changing;
                     yield return new WaitForSeconds(changeGearTime);
                     currentGear += gearChange;
+                    StartCoroutine(DecreaseRPMOverTime());
                 }
                 //increase the gear
             }
@@ -161,6 +162,7 @@ public class CarInputController : MonoBehaviour
                     gearState = GearState.Changing;
                     yield return new WaitForSeconds(changeGearTime);
                     currentGear += gearChange;
+                    StartCoroutine(DecreaseRPMOverTime());
                 }
                 //decrease the gear
             }
@@ -168,5 +170,22 @@ public class CarInputController : MonoBehaviour
 
         if (gearState != GearState.Neutral)
             gearState = GearState.Running;
+    }
+    IEnumerator DecreaseRPMOverTime()
+    {
+        float initialRPM = RPM;
+        float targetRPM = RPM * 0.8f;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < changeGearTime)
+        {
+            float t = elapsedTime / changeGearTime;
+            RPM = Mathf.Lerp(initialRPM, targetRPM, t);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+        RPM = targetRPM;
     }
 }

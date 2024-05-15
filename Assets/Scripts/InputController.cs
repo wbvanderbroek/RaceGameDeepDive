@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
@@ -11,13 +12,16 @@ public class InputController : MonoBehaviour
     public float Forwards;
     public float Steering;
     public float braking;
+
+    PlayerInput input;
     void Awake()
     {
+        input = FindObjectOfType<PlayerInput>();
         carController = GetComponent<CarController>();
     }
     void Update()
     {
-        Forwards = Input.GetAxis("Vertical");
+        Forwards = input.actions["Vertical"].ReadValue<float>();
         Steering = Input.GetAxis("Horizontal");
 
         carController.ChangeSpeed(Forwards);

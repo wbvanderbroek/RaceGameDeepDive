@@ -32,14 +32,21 @@ public class CameraSwitcher : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Tab) && hoodView.activeSelf == true)
         {
             hoodView.SetActive(false);
-            backView.SetActive(true);
+            thirdPerson.SetActive(true);
             Debug.Log("To back-view");
         }
-        else if (Input.GetKeyDown(KeyCode.Tab) && backView.activeSelf == true)
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            backView.SetActive(true);
+            firstPerson.SetActive(false);
+            thirdPerson.SetActive(false);
+            hoodView.SetActive(false);
+        }
+        else if (Input.GetKeyUp(KeyCode.Tab))
         {
             backView.SetActive(false);
             thirdPerson.SetActive(true);
-            Debug.Log("To third-person");
         }
     }
 }

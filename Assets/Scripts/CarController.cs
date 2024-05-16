@@ -12,9 +12,6 @@ public class CarController : MonoBehaviour
     public Rigidbody rb;
     public Wheel[] wheels;
 
-    [SerializeField] private float accelerationRate = 500f;
-    [SerializeField] private float decelerationRate = 1000f;
-
     [SerializeField] private TextMeshProUGUI speedText;
     public bool allowDrive =false;
     private float currentSpeed = 0;

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class InputController : MonoBehaviour
 {
+    public string InputsteerAxis = "Horizontal";
+    public string InputthrottleAxis = "Vertical";
+
     CarController carController;
     public float Throttleinput { get; private set; }
     public float SteerInput { get; private set; }
@@ -19,7 +22,6 @@ public class InputController : MonoBehaviour
     {
         Forwards = Input.GetAxis("Vertical");
         Steering = Input.GetAxis("Horizontal");
-        carController.ChangeRpm(Forwards);
 
         carController.ChangeSpeed(Forwards);
         carController.Turn(Steering);        
@@ -30,14 +32,6 @@ public class InputController : MonoBehaviour
         else
         {
             carController.DisableBrake(braking);
-        }
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            //gear up
-        }
-        else if (Input.GetKey(KeyCode.LeftControl))
-        {
-            //gear down *if possible
         }
     }
 }

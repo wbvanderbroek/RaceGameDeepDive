@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class CheckpointsandLaps : MonoBehaviour
 {
-
     [Header("Settings")]
     public float laps = 1;
 
@@ -16,8 +15,12 @@ public class CheckpointsandLaps : MonoBehaviour
     public GameObject currentCheckpoint;
     public int checkpointCounter = 0;
 
+    private Timer timer;
+
     private void Start()
     {
+        timer = FindObjectOfType<Timer>();
+
         currentCheckpoint = checkpoints[0];
         currentLap = 1;
 
@@ -32,52 +35,38 @@ public class CheckpointsandLaps : MonoBehaviour
         checkpoints[checkpointCounter].GetComponent<MeshRenderer>().enabled = true;
     }
 
-    //private void Update()
-    //{
-    //    foreach (var cp in checkpoints)
-    //    {
-    //        cp.SetActive(false);
-    //    }
-    //    checkpoints[checkpointCounter].SetActive(true);
-    //}
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Checkpoint"))
         {
-            NextCheckpoint();
-        }
-        if (other.CompareTag("Checkpoint"))
-        {
             GameObject thisCheckpoint = other.gameObject;
 
-            // Started race
             if (thisCheckpoint == checkpoints[0] && !started)
             {
                 print("Started");
                 started = true;
             }
-            // Ended Lap / Race
-            else if (thisCheckpoint == checkpoints[checkpoints.Length-1] && started)
+            else if (thisCheckpoint == checkpoints[checkpoints.Length - 1] && started)
             {
-                // if all laps are finished, end race
                 if (currentLap == laps)
                 {
-                    if (currentCheckpoint == checkpoints[checkpoints.Length-1])
+                    if (currentCheckpoint == checkpoints[checkpoints.Length - 1])
                     {
                         finished = true;
                         print("Finished");
+                        if (timer != null)
+                        {
+                            timer.TouchLastCheckpoint();
+                        }
                     }
                     else
                     {
                         print("You missed 1 or more checkpoints!");
                     }
                 }
-                //if all laps are not finished, start new lap.
                 else if (currentLap < laps)
                 {
-                    if (currentCheckpoint == checkpoints[checkpoints.Length])
+                    if (currentCheckpoint == checkpoints[checkpoints.Length - 1])
                     {
                         currentLap++;
                         currentCheckpoint = checkpoints[0];
@@ -90,32 +79,28 @@ public class CheckpointsandLaps : MonoBehaviour
                 }
             }
 
-            // Loop through the checkpoints and compare and check which one the player passed through
             for (int i = 0; i < checkpoints.Length; i++)
             {
                 if (finished)
                     return;
 
-                // if the checkpoint is correct
                 if (thisCheckpoint == checkpoints[i] && checkpoints[i] == currentCheckpoint)
                 {
-                    print("YYEEEEEEEEEEEEEEEEESSSS");
+                    print("Correct checkpoint");
                     NextCheckpoint();
                 }
-                // if the checkpoint is incorrect
                 else if (thisCheckpoint == checkpoints[i] && checkpoints[i] != currentCheckpoint)
                 {
-                    print("NOOOOOOOOOOOOOOOOOOOOOO WROOOOOOOOONG");
+                    print("Wrong checkpoint");
                 }
             }
         }
-
     }
+
     public GameObject NextCheckpoint()
     {
         checkpoints[checkpointCounter].SetActive(false);
-            checkpointCounter++;
-
+        checkpointCounter++;
 
         if (checkpointCounter == checkpoints.Length)
         {

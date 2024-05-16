@@ -30,9 +30,16 @@ public class CheckpointsandLaps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Checkpoint"))
+        if (other.gameObject.CompareTag("Checkpoint") && other.gameObject == currentCheckpoint)
         {
-            NextCheckpoint();
+            if (TryGetComponent<PlayerCheckpoints>(out PlayerCheckpoints playerCheckpoints))
+            {
+                playerCheckpoints.NextCheckpoint();
+            }
+            else
+            {
+                NextCheckpoint();
+            }
         }
         if (other.CompareTag("Checkpoint"))
         {
@@ -96,7 +103,6 @@ public class CheckpointsandLaps : MonoBehaviour
 
     public GameObject NextCheckpoint()
     {
-        checkpoints[checkpointCounter].SetActive(false);
             checkpointCounter++;
 
         if (checkpointCounter == checkpoints.Length)

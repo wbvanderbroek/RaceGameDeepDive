@@ -51,17 +51,17 @@ PrefabInstance:
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 600.0216
+      value: 529.6814
       objectReference: {fileID: 0}
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000038146973
+      value: -0.00001335144
       objectReference: {fileID: 0}
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 39.85169
+      value: 77.482216
       objectReference: {fileID: 0}
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
@@ -110,6 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7693150998588858450, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
+      propertyPath: speedText
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7693150998588858450, guid: 9f4a0507f9258ea43bfb0e75399b1719,
+        type: 3}
       propertyPath: BackLight1
       value: 
       objectReference: {fileID: 0}
@@ -128,6 +133,10 @@ PrefabInstance:
     - {fileID: 2121114326005727525, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
     - {fileID: 2697453674827772382, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
     - {fileID: 2167039210602328081, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
+    - {fileID: 6221745192134196562, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
+    - {fileID: 151716975141656072, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
+    - {fileID: 5580088566085660631, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
+    - {fileID: 6651292826539751687, guid: 9f4a0507f9258ea43bfb0e75399b1719, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7235706034910985154, guid: 9f4a0507f9258ea43bfb0e75399b1719,

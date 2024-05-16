@@ -11,8 +11,6 @@ public class CarController : MonoBehaviour
 
     public Rigidbody rb;
     public Wheel[] wheels;
-    [SerializeField] private Light BackLight1;
-    [SerializeField] private Light BackLight2;
 
     [SerializeField] private float accelerationRate = 500f;
     [SerializeField] private float decelerationRate = 1000f;
@@ -29,6 +27,8 @@ public class CarController : MonoBehaviour
     }
     private void Update()
     {
+        if (speedText == null)
+            return;
         speedText.text = Mathf.Round(currentSpeed).ToString();
         StartCoroutine(CalculateSpeed());
     }
@@ -58,8 +58,6 @@ public class CarController : MonoBehaviour
         {
             wheel.brakeForce = 700f;
         }
-        BackLight1.enabled = true;
-        BackLight2.enabled = true;
     }
     public void DisableBrake(float brake)
     {
@@ -67,7 +65,5 @@ public class CarController : MonoBehaviour
         {
             wheel.brakeForce = 0f;
         }
-        BackLight1.enabled = false;
-        BackLight2.enabled = false;
     }
 }

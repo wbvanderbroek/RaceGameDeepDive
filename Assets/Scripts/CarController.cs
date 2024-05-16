@@ -1,46 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-
-
 public class CarController : MonoBehaviour
 {
     public Transform centerOfMass;
-    public float motorTorque = 500f;
+    public float motorTorque = 1000f;
     public float maxSteer = 20f;
     public float brakeTorque = 100f;
-    public float currentspeed;
 
-    public float BrakeForce;
-
-    public float steer { get; set; }
-    public float throttle { get; set; }
-    private Rigidbody rb;
+    public Rigidbody rb;
     public Wheel[] wheels;
     [SerializeField] private Light BackLight1;
     [SerializeField] private Light BackLight2;
 
-    [SerializeField] private LapTimer finish;    
+    [SerializeField] private TextMeshProUGUI speedText;
+    private float currentSpeed = 0;
 
-    [Header("Level Variables")]
-    public GameObject[] checkPoints;
-    public GameObject currentCheckPoint;
-    public int checkPointCounter = 0;
-
-    void Start()
+    void Awake()
     {
-        checkPoints[0].SetActive(true);
         wheels = GetComponentsInChildren<Wheel>();
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
     }
-    public void ChangeSpeed(float throttle)
+    private void Update()
+    {
+        speedText.text = Mathf.Round(currentSpeed).ToString();
+        StartCoroutine(CalculateSpeed());
+    }
+    public void ChangeSpeed(float throttle, float input)
     {
         foreach (var wheel in wheels)
         {
-            
-            wheel.Torque = throttle * motorTorque;
+            wheel.Torque = input * throttle;
         }
+    }
+    IEnumerator CalculateSpeed()
+    {
+        Vector3 lastPosition = transform.position;
+        yield return new WaitForFixedUpdate();
+        currentSpeed = (lastPosition - transform.position).magnitude / Time.deltaTime * 4f;
     }
     public void Turn(float steer)
     {
@@ -67,29 +66,4 @@ public class CarController : MonoBehaviour
         BackLight1.enabled = false;
         BackLight2.enabled = false;
     }
-
-    void Update()
-    {
-        StartCoroutine(CalculateSpeed());
-    }
-    IEnumerator CalculateSpeed()
-    {
-        Vector3 lastPosition = transform.position;
-        yield return new WaitForFixedUpdate();
-        currentspeed = (lastPosition - transform.position).magnitude / Time.deltaTime;
-    }
-    
-    public GameObject NextCheckpoint()
-    {
-        checkPointCounter++;
-
-        if (checkPointCounter == checkPoints.Length)
-        {
-            LapTimer lapTimer = FindObjectOfType<LapTimer>();
-            lapTimer.CanFinishOn();
-            checkPointCounter = 0;
-        }
-        currentCheckPoint = checkPoints[checkPointCounter];
-        return currentCheckPoint;
-    }    
 }

@@ -130,7 +130,9 @@ public class CarInputController : MonoBehaviour
                 }
                 RPM = Mathf.Lerp(RPM, Mathf.Max(idleRPM, redLine * Forwards) + Random.Range(-50, 50), Time.deltaTime);
                 //RPM = Mathf.Lerp(RPM, Mathf.Max(idleRPM - 100, wheelRPM), Time.deltaTime * 3f);
-                torque = (hpToRPMCurve.Evaluate(RPM / redLine) * carController.motorTorque / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;
+                //torque = (hpToRPMCurve.Evaluate(RPM / redLine) * carController.motorTorque / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch;\
+                float addTorque = (hpToRPMCurve.Evaluate(RPM / redLine));
+                torque = (carController.motorTorque / RPM) * gearRatios[currentGear] * differentialRatio * 5252f * clutch + addTorque;
             }
         }
 

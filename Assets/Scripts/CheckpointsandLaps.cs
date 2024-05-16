@@ -31,6 +31,18 @@ public class CheckpointsandLaps : MonoBehaviour
         started = false;
         finished = false;
     }
+    private void Update()
+    {
+        if (previousCheckpoint != null)
+        {
+            float distanceFromCheckpoint = Vector3.Distance(transform.position, previousCheckpoint.transform.position);
+            if (distanceFromCheckpoint > maxDistance)
+            {
+                Debug.Log("Teleporting to the last checkpoint due to exceeding max distance.");
+                transform.position = previousCheckpoint.transform.position;
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {

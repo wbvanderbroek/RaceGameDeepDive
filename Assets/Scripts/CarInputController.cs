@@ -41,6 +41,8 @@ public class CarInputController : MonoBehaviour
     public float decreaseGearRPM;
     public float changeGearTime = 0.5f;
 
+    private bool isChangingGears = false;
+
     void Awake()
     {
         carController = GetComponent<CarController>();
@@ -109,11 +111,17 @@ public class CarInputController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) && (RPM > increaseGearRPM || gearState == GearState.Neutral || currentGear == 0))
             {
-                StartCoroutine(ChangeGear(1));
+                if (!isChangingGears)
+                {
+                    StartCoroutine(ChangeGear(1));
+                }
             }
             else if (Input.GetKeyDown(KeyCode.LeftControl) && (RPM < decreaseGearRPM || gearState == GearState.Neutral ))
             {
-                StartCoroutine(ChangeGear(-1));
+                if (!isChangingGears)
+                {
+                    StartCoroutine(ChangeGear(-1));
+                }
             }
         }
         if (isEngineRunning > 0)
@@ -140,36 +148,36 @@ public class CarInputController : MonoBehaviour
     }
     IEnumerator ChangeGear(int gearChange)
     {
+        isChangingGears = true;
         gearState = GearState.CheckingChange;
         if (currentGear + gearChange >= 0)
         {
             if (gearChange > 0)
             {
-                gearState = GearState.Running;
                 if (currentGear < gearRatios.Length - 1)
                 {
                     gearState = GearState.Changing;
                     yield return new WaitForSeconds(changeGearTime);
                     currentGear += gearChange;
+                    gearState = GearState.Running;
                     StartCoroutine(DecreaseRPMOverTime());
                 }
                 //increase the gear
             }
             if (gearChange < 0)
             {
-                gearState = GearState.Running;
-
                 if (currentGear > 0)
                 {
                     gearState = GearState.Changing;
                     yield return new WaitForSeconds(changeGearTime);
                     currentGear += gearChange;
+                    gearState = GearState.Running;
                     StartCoroutine(DecreaseRPMOverTime());
                 }
                 //decrease the gear
             }
         }
-
+        isChangingGears = false;
         if (gearState != GearState.Neutral)
             gearState = GearState.Running;
     }

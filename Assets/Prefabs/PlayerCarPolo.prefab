@@ -2822,6 +2822,7 @@ GameObject:
   - component: {fileID: 3807423084597897826}
   - component: {fileID: 7693150998588858450}
   - component: {fileID: 4369924818430081488}
+  - component: {fileID: 6447811050834821748}
   - component: {fileID: 1279553376758492176}
   m_Layer: 0
   m_Name: PlayerCarPolo
@@ -2925,7 +2926,8 @@ MonoBehaviour:
   wheels: []
   BackLight1: {fileID: 8877055828359875990}
   BackLight2: {fileID: 4401629944905806567}
-  speedText: {fileID: 794826054995935157}
+  accelerationRate: 500
+  decelerationRate: 1000
 --- !u!114 &4369924818430081488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2942,6 +2944,22 @@ MonoBehaviour:
   thirdPerson: {fileID: 8041745512311487336}
   hoodView: {fileID: 763713905606603007}
   backView: {fileID: 161980313367302979}
+--- !u!114 &6447811050834821748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235706034910985154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5be418ba8a66ee4788357b714976696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laps: 1
+  checkpoints: []
+  currentCheckpoint: {fileID: 0}
+  checkpointCounter: 0
 --- !u!114 &1279553376758492176
 MonoBehaviour:
   m_ObjectHideFlags: 0

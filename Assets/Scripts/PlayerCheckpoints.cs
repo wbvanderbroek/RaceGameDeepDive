@@ -31,7 +31,7 @@ public class PlayerCheckpoints : MonoBehaviour
             checkpointsandLaps.checkpointCounter = 0;
         }
 
-        checkpointsandLaps.checkpoints[checkpointsandLaps.checkpointCounter].transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+        checkpointsandLaps.checkpoints[checkpointsandLaps.checkpointCounter].GetComponent<MeshRenderer>().enabled = true;
         checkpointsandLaps.currentCheckpoint = checkpointsandLaps.checkpoints  [checkpointsandLaps.checkpointCounter];
         return checkpointsandLaps.currentCheckpoint;
     }

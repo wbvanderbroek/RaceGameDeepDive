@@ -40,6 +40,8 @@ public class CheckpointsandLaps : MonoBehaviour
             {
                 Debug.Log("Teleporting to the last checkpoint due to exceeding max distance.");
                 transform.position = previousCheckpoint.transform.position;
+                rb.velocity = Vector3.zero;
+
             }
         }
     }
@@ -61,7 +63,6 @@ public class CheckpointsandLaps : MonoBehaviour
             GameObject nextCheckpoint = currentCheckpoint;
             float distance = Vector3.Distance(previousCheckpoint.transform.position, nextCheckpoint.transform.position);
             Debug.Log($"Distance to next checkpoint: {distance}");
-            rb.velocity = Vector3.zero;
         }
         if (other.CompareTag("Checkpoint"))
         {

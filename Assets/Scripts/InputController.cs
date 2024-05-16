@@ -34,13 +34,5 @@ public class InputController : MonoBehaviour
         {
             carController.DisableBrake(braking);
         }
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            //gear up
-        }
-        else if (Input.GetKey(KeyCode.LeftControl))
-        {
-            //gear down *if possible
-        }
     }
 }

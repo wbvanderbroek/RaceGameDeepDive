@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public class CarController : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private float accelerationRate = 500f;
     [SerializeField] private float decelerationRate = 1000f;
 
+    [SerializeField] private TextMeshProUGUI speedText;
+
     private float currentSpeed = 0;
 
     void Awake()
@@ -26,7 +29,8 @@ public class CarController : MonoBehaviour
     }
     private void Update()
     {
-        CalculateSpeed();
+        speedText.text = Mathf.Round(currentSpeed).ToString();
+        StartCoroutine(CalculateSpeed());
     }
     public void ChangeSpeed(float throttle, float input)
     {

@@ -1063,7 +1063,7 @@ Transform:
   m_GameObject: {fileID: 2121114326005727525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.13, y: 5.37, z: -15.41}
+  m_LocalPosition: {x: -2.02, y: 6.68, z: -0.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2928,6 +2928,7 @@ MonoBehaviour:
   BackLight2: {fileID: 4401629944905806567}
   accelerationRate: 500
   decelerationRate: 1000
+  speedText: {fileID: 794826054995935157}
 --- !u!114 &4369924818430081488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2951,12 +2952,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7235706034910985154}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5be418ba8a66ee4788357b714976696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   laps: 1
+  currentLap: 0
+  started: 0
+  finished: 0
   checkpoints: []
   currentCheckpoint: {fileID: 0}
   checkpointCounter: 0

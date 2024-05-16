@@ -7,9 +7,9 @@ public class CheckpointsandLaps : MonoBehaviour
     public float laps = 1;
 
     [Header("Information")]
-    private int currentLap;
-    private bool started;
-    private bool finished;
+    public int currentLap;
+    public bool started;
+    public bool finished;
 
     [Header("Level Variables")]
     public GameObject[] checkpoints;
@@ -23,13 +23,6 @@ public class CheckpointsandLaps : MonoBehaviour
 
         started = false;
         finished = false;
-        foreach (var checkpoint in checkpoints)
-        {
-            checkpoint.SetActive(false);
-        }
-        checkpoints[0].SetActive(true);
-
-        checkpoints[checkpointCounter].GetComponent<MeshRenderer>().enabled = true;
     }
 
     //private void Update()
@@ -44,9 +37,17 @@ public class CheckpointsandLaps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Checkpoint"))
+        if (other.gameObject.CompareTag("Checkpoint") && other.gameObject == currentCheckpoint)
         {
-            NextCheckpoint();
+            if (TryGetComponent<PlayerCheckpoints>(out PlayerCheckpoints playerCheckpoints))
+            {
+                playerCheckpoints.NextCheckpoint();
+
+            }
+            else
+            {
+                NextCheckpoint();
+            }
         }
         if (other.CompareTag("Checkpoint"))
         {
@@ -113,8 +114,7 @@ public class CheckpointsandLaps : MonoBehaviour
     }
     public GameObject NextCheckpoint()
     {
-        checkpoints[checkpointCounter].SetActive(false);
-            checkpointCounter++;
+        checkpointCounter++;
 
 
         if (checkpointCounter == checkpoints.Length)
@@ -122,7 +122,6 @@ public class CheckpointsandLaps : MonoBehaviour
             checkpointCounter = 0;
         }
 
-        checkpoints[checkpointCounter].SetActive(true);
         currentCheckpoint = checkpoints[checkpointCounter];
         return currentCheckpoint;
     }

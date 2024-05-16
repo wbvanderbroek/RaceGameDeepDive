@@ -14,17 +14,13 @@ public class AI : MonoBehaviour
     public bool canactivate;
     public float timeleft = 10f;
 
-    [SerializeField]
-    GameObject newlapbrake;
-
-
     [Header("Level Variables")]
     private Transform targetPositionTransform;
 
     private void Awake()
     {
         carController = GetComponent<CarController>();
-        targetPositionTransform = carController.checkPoints[0].transform;
+        targetPositionTransform = GetComponent<CheckpointsandLaps>().checkpoints[0].transform;
     }
 
     private void FixedUpdate()
@@ -61,24 +57,16 @@ public class AI : MonoBehaviour
         }        
         else
         {
-            targetPositionTransform = carController.NextCheckpoint().transform;
+            targetPositionTransform = GetComponent<CheckpointsandLaps>().NextCheckpoint().transform;
         }
 
         if (currentspeed < 18)
         {
             carController.DisableBrake(braking);
         }
-        carController.ChangeSpeed(forwards);
+        carController.ChangeSpeed(10000, forwards);
         carController.Turn(turn);
         StartCoroutine(CalculateSpeed());
-    }
-    public void Update()
-    {
-        timeleft -= Time.deltaTime;
-        if (timeleft < 1)
-        {
-            newlapbrake.active = true;
-        }
     }
     IEnumerator CalculateSpeed()
     {

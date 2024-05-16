@@ -12,7 +12,9 @@ public class PlayerCheckpoints : MonoBehaviour
         checkpointsandLaps = GetComponent<CheckpointsandLaps>();
         foreach (var checkpoint in checkpointsandLaps.checkpoints)
         {
-            checkpointsandLaps.checkpoints[checkpointsandLaps.checkpointCounter].GetComponent<MeshRenderer>().enabled = false;
+            checkpoint.GetComponent<MeshRenderer>().enabled = false;
+
+
         }
         checkpointsandLaps.checkpoints[0].GetComponent<MeshRenderer>().enabled = true;
 
@@ -28,6 +30,7 @@ public class PlayerCheckpoints : MonoBehaviour
 
         if (checkpointsandLaps.checkpointCounter == checkpointsandLaps.checkpoints.Length)
         {
+            print("finished");
             checkpointsandLaps.checkpointCounter = 0;
         }
 

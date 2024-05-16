@@ -23,12 +23,14 @@ public class Timer : MonoBehaviour
             }
             else
             {
+                GetComponent<CarController>().allowDrive = true;
                 ElapsedTime += Time.deltaTime;
                 int minutes = Mathf.FloorToInt(ElapsedTime / 60);
                 int seconds = Mathf.FloorToInt(ElapsedTime % 60);
                 Timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
         }
+     
     }
 
     public void TouchLastCheckpoint()

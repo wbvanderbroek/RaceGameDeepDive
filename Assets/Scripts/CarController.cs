@@ -16,7 +16,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float decelerationRate = 1000f;
 
     [SerializeField] private TextMeshProUGUI speedText;
-
+    public bool allowDrive =false;
     private float currentSpeed = 0;
 
     void Awake()
@@ -34,9 +34,12 @@ public class CarController : MonoBehaviour
     }
     public void ChangeSpeed(float throttle, float input)
     {
-        foreach (var wheel in wheels)
+        if (allowDrive)
         {
-            wheel.Torque = input * throttle;
+            foreach (var wheel in wheels)
+            {
+                wheel.Torque = input * throttle;
+            }
         }
     }
     IEnumerator CalculateSpeed()

@@ -156,11 +156,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4369924818430081488, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5749145755758644897, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -213,38 +208,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 1055734980}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: started
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: currentLap
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: maxDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: checkpointCounter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: currentCheckpoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
       propertyPath: checkpoints.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
@@ -266,16 +231,6 @@ PrefabInstance:
       propertyPath: checkpoints.Array.data[3]
       value: 
       objectReference: {fileID: 1601142943}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: checkpoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447811050834821748, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-        type: 3}
-      propertyPath: checkpoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7235706034910985154, guid: 9f4a0507f9258ea43bfb0e75399b1719,
         type: 3}
       propertyPath: m_Name
@@ -573,12 +528,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 150882247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1055734980 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 3807423084597897826, guid: 9f4a0507f9258ea43bfb0e75399b1719,
-    type: 3}
-  m_PrefabInstance: {fileID: 20174739}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1087054308
 GameObject:
   m_ObjectHideFlags: 0

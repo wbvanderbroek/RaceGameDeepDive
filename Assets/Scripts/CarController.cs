@@ -13,11 +13,12 @@ public class CarController : MonoBehaviour
     public Wheel[] wheels;
 
     [SerializeField] private TextMeshProUGUI speedText;
-    public bool allowDrive =false;
     private float currentSpeed = 0;
 
+    Timer timeManager;
     void Awake()
     {
+        timeManager = FindObjectOfType<Timer>();
         wheels = GetComponentsInChildren<Wheel>();
         rb = GetComponent<Rigidbody>();
         rb.centerOfMass = centerOfMass.localPosition;
@@ -31,7 +32,7 @@ public class CarController : MonoBehaviour
     }
     public void ChangeSpeed(float throttle, float input)
     {
-        if (allowDrive)
+        if (timeManager.allowDrive)
         {
             foreach (var wheel in wheels)
             {

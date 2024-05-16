@@ -2,36 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.Netcode;
 
-public class Timer : MonoBehaviour
+public class Timer : NetworkBehaviour
 {
     [SerializeField] TextMeshProUGUI Timertext;
-    [SerializeField] float RemainingTime;
-    float ElapsedTime;
+    [SerializeField] NetworkVariable<float> RemainingTime = new NetworkVariable<float>(10,NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
+    NetworkVariable<float> ElapsedTime = new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);
     bool isLastCheckpointReached = false;
     [SerializeField] private TextMeshProUGUI goText;
+    public bool allowDrive = false;
 
     void Update()
     {
         if (!isLastCheckpointReached)
         {
-            if (RemainingTime > 0.00000001)
+            if (RemainingTime.Value > 0)
             {
-                RemainingTime -= Time.deltaTime;
-                int minutes = Mathf.FloorToInt(RemainingTime / 60);
-                int seconds = Mathf.FloorToInt(RemainingTime % 60);
+                int minutes = 0;
+                int seconds = 0;
+                if (IsServer)
+                {
+                    RemainingTime.Value -= Time.deltaTime;
+                }
+                minutes = Mathf.FloorToInt(RemainingTime.Value / 60);
+                seconds = Mathf.FloorToInt(RemainingTime.Value % 60);
                 Timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
             else
             {
-                if (GetComponent<CarController>().allowDrive == false)
+                int minutes = 0;
+                int seconds = 0;
+                if (allowDrive == false)
                 {
                     StartCoroutine(ShowGoUI());
+                    allowDrive = true;
                 }
-                GetComponent<CarController>().allowDrive = true;
-                ElapsedTime += Time.deltaTime;
-                int minutes = Mathf.FloorToInt(ElapsedTime / 60);
-                int seconds = Mathf.FloorToInt(ElapsedTime % 60);
+                if (IsServer)
+                {
+                    ElapsedTime.Value += Time.deltaTime;
+                }
+                minutes = Mathf.FloorToInt(ElapsedTime.Value / 60);
+                seconds = Mathf.FloorToInt(ElapsedTime.Value % 60);
                 Timertext.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
         }

@@ -27,7 +27,6 @@ public class PlayerSpawnManager : MonoBehaviour
          * this is just an example, and you change this implementation to make players spawn on specific spawn points
          * depending on other factors (I.E: player's team)
          */
-        Debug.LogWarning(amountOfPlayersSpawned);
         amountOfPlayersSpawned++;
         return new Vector3(55 - amountOfPlayersSpawned * 4, 6, 728);
     }

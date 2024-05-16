@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class CheckpointsandLaps : MonoBehaviour
@@ -21,10 +22,16 @@ public class CheckpointsandLaps : MonoBehaviour
     private GameObject previousCheckpoint;
     private void Start()
     {
+        if (!GetComponent<NetworkObject>().IsOwner)
+        {
+            this.enabled = false;
+            return;
+        }
         rb = GetComponent<Rigidbody>();
 
         timer = FindObjectOfType<Timer>();
-
+        GameObject checkpointManager = GameObject.Find("CheckpointManager");
+        checkpoints = checkpointManager.GetComponent<CheckpointManager>().checkpoints;
         currentCheckpoint = checkpoints[0];
         currentLap = 1;
 

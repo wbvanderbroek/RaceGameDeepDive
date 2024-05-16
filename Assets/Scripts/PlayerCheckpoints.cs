@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class PlayerCheckpoints : MonoBehaviour
@@ -9,6 +10,11 @@ public class PlayerCheckpoints : MonoBehaviour
 
     void Start()
     {
+        if (!GetComponent<NetworkObject>().IsOwner)
+        {
+            this.enabled = false;
+            return;
+        }
         checkpointsandLaps = GetComponent<CheckpointsandLaps>();
         foreach (var checkpoint in checkpointsandLaps.checkpoints)
         {
@@ -33,7 +39,7 @@ public class PlayerCheckpoints : MonoBehaviour
             print("finished");
             checkpointsandLaps.checkpointCounter = 0;
         }
-
+       
         checkpointsandLaps.checkpoints[checkpointsandLaps.checkpointCounter].GetComponent<MeshRenderer>().enabled = true;
         checkpointsandLaps.currentCheckpoint = checkpointsandLaps.checkpoints  [checkpointsandLaps.checkpointCounter];
         return checkpointsandLaps.currentCheckpoint;

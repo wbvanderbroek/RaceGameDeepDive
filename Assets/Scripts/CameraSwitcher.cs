@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class CameraSwitcher : MonoBehaviour
@@ -8,10 +9,18 @@ public class CameraSwitcher : MonoBehaviour
     public GameObject thirdPerson;
     public GameObject hoodView;
     public GameObject backView;
+    public GameObject canvas;
     
     void Start()
     {
-
+        if (!GetComponent<NetworkObject>().IsOwner)
+        {
+            firstPerson.SetActive(false);
+            thirdPerson.SetActive(false);
+            hoodView.SetActive(false);
+            backView.SetActive(false);
+            canvas.SetActive(false);
+        }
     }
 
     void Update()

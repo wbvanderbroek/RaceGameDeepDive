@@ -48,6 +48,7 @@ public class CheckpointsandLaps : MonoBehaviour
                 Debug.Log("Teleporting to the last checkpoint due to exceeding max distance.");
                 transform.position = previousCheckpoint.transform.position;
                 rb.velocity = Vector3.zero;
+                transform.rotation = previousCheckpoint.transform.rotation;
             }
         }
     }
